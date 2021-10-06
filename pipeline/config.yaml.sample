@@ -1,0 +1,24 @@
+### Staging Auto-Deploy
+auto_deploy_staging: False
+
+### Static Application Security Testing (SAST) Step
+sast:
+  enabled: False
+  sonarqube:
+    image: public.ecr.aws/adelagon/sonarqube:lts-community
+    token: <PLACE_SONARQUBE_TOKEN_HERE>
+
+### Software Composition Analysis (SCA) Step
+sca:
+  enabled: False
+
+### License Checker Step
+license:
+  enabled: False
+
+### Dynamic Application Security Testing (DAST) Step
+dast:
+  enabled: False
+  zaproxy:
+    instance_type: t2.medium
+    api_key: <PLACE_ZAP_API_KEY_HERE>

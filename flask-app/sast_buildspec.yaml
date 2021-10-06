@@ -1,0 +1,15 @@
+version: 0.1
+
+phases:
+  pre_build:
+    commands:
+      - echo Installing SAST Tool...
+      - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip
+      - unzip sonar-scanner-cli-4.6.2.2472-linux.zip
+      - mv sonar-scanner-4.6.2.2472-linux /opt/sonar-scanner
+      - chmod -R 775 /opt/sonar-scanner
+  build:
+    commands:
+      - echo Build started on `date`
+      - /opt/sonar-scanner/bin/sonar-scanner -Dsonar.sources=. -Dproject.settings=sonar-project.properties -Dsonar.host.url=$SONARQUBE_URL -Dsonar.login=$SONARQUBE_ACCESS_TOKEN > sonarqube_scanreport.json
+      - echo Build complete on `date`
